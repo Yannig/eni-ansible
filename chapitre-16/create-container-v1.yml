@@ -22,7 +22,7 @@
         hostname:  "{{ inventory_hostname }}"
         command:   "/sbin/init"
         network:   "{{ network_name}}"
-        image:     "{{ container_image|d('quay.io/centos/centos:stream8') }}"
+        image:     "{{ container_image|d('docker.io/rockylinux/rockylinux:10-ubi-init') }}"
         state:     started
       delegate_to: localhost
 

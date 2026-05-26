@@ -21,7 +21,7 @@
         name:         "{{ inventory_hostname }}"
         hostname:     "{{ inventory_hostname }}"
         network:      "{{ network_name }}"
-        image:        "{{ container_image|d('quay.io/centos/centos:stream8') }}"
+        image:        "{{ container_image|d('docker.io/rockylinux/rockylinux:10-ubi-init') }}"
         state:        started
       delegate_to: localhost
 
@@ -42,5 +42,5 @@
   tasks:
     - name: "Install prereq"
       dnf:
-        name: "sudo,firewalld,iproute"
+        name: "sudo,firewalld,iproute,procps-ng"
         state: present

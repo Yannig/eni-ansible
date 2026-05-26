@@ -4,11 +4,11 @@
   hosts: localhost
   gather_facts: no
   tasks:
-    - name: "Build centos-httpd image"
+    - name: "Build rocky-httpd image"
       docker_image:
-        name: "centos-httpd"
+        name: "rocky-httpd"
         source: build
         force_source: yes
         build:
-          path: "centos-httpd"
+          path: "rocky-httpd"
           pull: yes

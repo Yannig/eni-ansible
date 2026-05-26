@@ -1,4 +1,4 @@
-FROM quay.io/centos/centos:stream8
+FROM docker.io/rockylinux/rockylinux:10-ubi-init
 
 RUN dnf -y install httpd
 COPY info.txt /var/www/html

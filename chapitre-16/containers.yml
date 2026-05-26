@@ -1,9 +1,9 @@
 apache:
   hosts:
     "apache[1:4]":
-      # container_image: "quay.io/centos/centos:stream8"
-      container_image: centos-httpd
-      start_cmd: "{{ omit }}"
+      # container_image: "docker.io/rockylinux/rockylinux:10-ubi-init
+      container_image: rocky-httpd
+      # start_cmd: "{{ omit }}"
       php_install: yes
 
 mysql:
@@ -14,7 +14,7 @@ haproxy:
   hosts:
     haproxy1: {}
   vars:
-    container_image: "docker.io/jrei/systemd-ubuntu"
+    container_image: "docker.io/jrei/systemd-ubuntu:24.04"
     privileged: yes
 
 all:

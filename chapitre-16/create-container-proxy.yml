@@ -7,9 +7,9 @@
     - "containers.podman"
   tasks:
     - name: "Launch proxy"
-      podman_container: &container
+      podman_container:
         name:     "proxy"
         ports:    "3128:3128"
         network:  "{{ network_name }}"
-        image:    "docker.io/mpreu/squid:5.5"
+        image:    "docker.io/mpreu/squid:7.5"
         state:    started

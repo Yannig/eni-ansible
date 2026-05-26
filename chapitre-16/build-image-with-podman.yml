@@ -6,8 +6,8 @@
   collections:
     - containers.podman
   tasks:
-    - name: "Build centos-httpd image"
+    - name: "Build rocky-httpd image"
       podman_image:
-        name: "centos-httpd"
-        path: "centos-httpd"
+        name: "rocky-httpd"
+        path: "rocky-httpd"
         force: yes
