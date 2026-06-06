@@ -2,6 +2,6 @@
 
 - name: "Install MariaDB"
   hosts: mysql
-  gather_facts: no
+  gather_facts: false
   roles:
     - role: "mariadb"

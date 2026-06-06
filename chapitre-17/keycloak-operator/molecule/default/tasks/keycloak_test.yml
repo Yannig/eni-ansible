@@ -4,7 +4,7 @@
     state: present
     namespace: '{{ namespace }}'
     definition: "{{ lookup('template', '/'.join([samples_dir, cr_file])) | from_yaml }}"
-    wait: yes
+    wait: true
     wait_timeout: 300
     wait_condition:
       type: Successful

@@ -2,7 +2,7 @@
 
 - name: "Generate html file for each host"
   hosts: inventory
-  gather_facts: yes
+  gather_facts: true
   vars:
     host_inventory: "central-inventory"
     inventory_dir:  "/var/www/html/inventory"
@@ -11,7 +11,7 @@
     - delegate_to: "{{ host_inventory }}"
       block:
         - name: "Create template directory"
-          file:
+          ansible.builtin.file:
             path: "{{ inventory_dir }}"
             owner: "apache"
             group: "apache"
@@ -19,7 +19,7 @@
             state: "directory"
           # As we only have one central machine,
           # run only one time this task
-          run_once: yes
+          run_once: true
         - name: "html file generation"
           template:
             src: "machine.html.j2"

@@ -13,7 +13,7 @@
 #
 #  host:
 #      description: The URL or Unix socket path used to connect to the Docker API.
-#      required: yes
+#      required: true
 #
 #  tls:
 #     description: Connect using TLS without verifying the authenticity of the Docker host server.

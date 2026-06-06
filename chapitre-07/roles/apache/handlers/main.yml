@@ -1,6 +1,6 @@
 ---
 
 - name: "apache restart"
-  service:
+  ansible.builtin.service:
     name: "httpd"
     state: "restarted"

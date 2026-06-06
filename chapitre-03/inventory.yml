@@ -2,7 +2,7 @@
 
 - name: "Retrieve facts and store them locally"
   hosts: all
-  gather_facts: no
+  gather_facts: false
   connection: ansible.builtin.local
   tasks:
     - name: "Gather facts"
@@ -10,7 +10,7 @@
         gather_subset: "!all"
       connection: "{{ omit }}"
     - name: "Create directory for each machine"
-      file:
+      ansible.builtin.file:
         path: "/tmp/{{ inventory_hostname }}"
         state: "directory"
     - name: "Create file information for each machine"

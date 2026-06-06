@@ -6,13 +6,13 @@
     state: "present"
 
 - name: "apache service activation"
-  service:
+  ansible.builtin.service:
     name: "httpd"
     state: "started"
-    enabled: yes
+    enabled: true
 
 - name: "Allow http connections"
-  firewalld:
+  ansible.posix.firewalld:
     service: "http"
-    permanent: yes
+    permanent: true
     state: enabled

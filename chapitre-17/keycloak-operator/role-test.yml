@@ -2,6 +2,6 @@
 
 - name: "Test"
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   roles:
     - role: keycloak

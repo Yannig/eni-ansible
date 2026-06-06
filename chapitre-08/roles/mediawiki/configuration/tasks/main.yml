@@ -8,12 +8,12 @@
     state: directory
 
 - name: "uncompress mediawiki archive"
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ mediawiki_archive_url }}"
     dest: "{{ mediawiki_directory }}"
     owner: "apache"
     group: "apache"
-    remote_src: yes
+    remote_src: true
     setype: httpd_sys_content_t
     # remove mediawiki-xx.x/ from path
     extra_opts: --transform=s/^mediawiki-[0-9\.]*\///
@@ -22,7 +22,7 @@
   register: archive_uncompressed
 
 - name: "mediawiki configuration"
-  become: yes
+  become: true
   become_user: "apache"
   command:
     php82 install.php --scriptpath /{{ mediawiki_name }}
@@ -41,26 +41,26 @@
   # one machine at a time
   # This way, we are sure that our command is never launched
   # multiple time in parallel from different hosts
-  run_once: yes
+  run_once: true
   delegate_to: "{{ item }}"
   # Check if we have mediawiki files on current host
   when: "hostvars[item].archive_uncompressed is defined"
   loop: "{{ groups.apache }}"
 
 - name: "fix mediawiki redirection"
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ mediawiki_directory }}/LocalSettings.php"
     regex: '\$wgServer.*'
     line: '$wgServer = WebRequest::detectServer();'
 
 - name: "mediawiki db update"
-  become: yes
+  become: true
   become_user: "apache"
   command:
     php82 update.php --quick
   args:
     chdir: "{{ mediawiki_maintenance_directory }}"
   # Update need to be launched only once
-  run_once: yes
+  run_once: true
   register: _
   changed_when: "' ...done.' in _.stdout"

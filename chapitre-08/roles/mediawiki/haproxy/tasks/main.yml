@@ -17,7 +17,7 @@
 - meta: flush_handlers
 
 - name: "enable and start haproxy service"
-  service:
+  ansible.builtin.service:
     name: "haproxy"
     state: started
-    enabled: yes
+    enabled: true

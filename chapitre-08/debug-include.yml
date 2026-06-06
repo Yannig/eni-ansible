@@ -2,10 +2,10 @@
 
 - name: "Include test"
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   tasks:
     - include_tasks: "test.yml"
       loop: [1, 2]
       loop_control:
         loop_var: global_item
-        #extended: yes
+        #extended: true

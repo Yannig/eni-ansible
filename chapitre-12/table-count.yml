@@ -2,7 +2,7 @@
 
 - name: "Table count"
   hosts: mysql
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: "Put sql file"
       copy:
@@ -14,4 +14,3 @@
     - name: "Table count"
       debug:
         var: mysql.stdout_lines[-1]
-

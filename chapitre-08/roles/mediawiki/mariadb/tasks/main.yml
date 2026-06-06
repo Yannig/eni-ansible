@@ -4,7 +4,7 @@
   mysql_db:
     name: "{{ mediawiki_db_name }}"
     state: present
-  run_once: yes
+  run_once: true
 
 - name: "mediawiki user+privileges"
   mysql_user:

@@ -2,7 +2,7 @@
 
 - name: "Génération fichier html des machines de notre inventaire"
   hosts: all
-  gather_facts: yes
+  gather_facts: true
   vars:
     # On utilise une variable pour accéder à cette machine
     # pour des raisons de clarté
@@ -10,7 +10,7 @@
   roles:
     # On récupère les variables de notre rôle
     - role: "apache"
-      when: no
+      when: false
   tasks:
     - name: "Génération fichier html"
       template:

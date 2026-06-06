@@ -22,6 +22,6 @@
     name: "php82-php,php82-php-mysqlnd,php82-php-xml,php82-php-mbstring,php82-php-gd,php82-php-intl"
     state: present
     enablerepo: "remi-8.2"
-  changed_when: yes
+  changed_when: true
   # We need to restart apache
   notify: [ "apache restart" ]

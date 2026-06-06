@@ -2,15 +2,15 @@
 
 - name: "Import Let's Encrypt certificate"
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: "Import isrgrootx1.pem"
       java_cert:
         keystore_path: "/tmp/test.jks"
-        keystore_create: yes
+        keystore_create: true
         keystore_pass: "ansible"
         cert_path: "isrgrootx1.pem"
         cert_alias: "letsencrypt2"
         state: present
-        remote_src: no
-      no_log: yes
+        remote_src: false
+      no_log: true

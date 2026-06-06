@@ -2,7 +2,7 @@
 
 - name: "Check checkpw filter"
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   vars:
     pass1: "password1"
     pass2: "password2"

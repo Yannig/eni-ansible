@@ -2,7 +2,7 @@
 
 - name: "MediaWiki db configuration"
   hosts: mysql
-  gather_facts: no
+  gather_facts: false
   tags: [ "mariadb", "mysql" ]
   tasks:
     - name: "mediawiki database"
@@ -21,7 +21,7 @@
 - name: "MediaWiki apache configuration"
   hosts: apache
   tags: "apache"
-  gather_facts: no
+  gather_facts: false
   tasks:
     - ansible.builtin.file:
         path: "/var/www/html/mediawiki"

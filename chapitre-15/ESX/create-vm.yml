@@ -2,7 +2,7 @@
 
 - name: "Create vm instance"
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: "Create VM"
       vmware_guest:
@@ -11,7 +11,7 @@
         username: "{{ vmware_username }}"
         password: "{{ vmware_password }}"
         datacenter: "{{ vmware_datacenter }}"
-        validate_certs: no
+        validate_certs: false
         folder: "{{ vmware_folder }}"
         # machine configuration
         name: "{{ vm_to_create }}"
@@ -20,7 +20,7 @@
         template: "{{ vm_template }}"
     - name: "Set hostname/IP"
       vmware_vm_shell:
-        validate_certs: no
+        validate_certs: false
         hostname: "{{ vmware_hostname }}"
         username: "{{ vmware_username }}"
         password: "{{ vmware_password }}"

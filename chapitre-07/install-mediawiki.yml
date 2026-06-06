@@ -2,7 +2,7 @@
 
 - name: "MediaWiki db configuration"
   hosts: apache
-  gather_facts: yes
+  gather_facts: true
   gather_subset: "network"
   tags: [ "mariadb", "mysql" ]
   roles:
@@ -12,6 +12,6 @@
 - name: "MediaWiki apache configuration"
   hosts: apache
   tags: "apache"
-  gather_facts: no
+  gather_facts: false
   roles:
     - role: "mediawiki/configuration"

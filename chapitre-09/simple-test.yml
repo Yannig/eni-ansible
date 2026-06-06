@@ -2,10 +2,10 @@
 
 - name: "Playbook speed test"
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: "Create a bunch of directory"
-      file:
+      ansible.builtin.file:
         path: /tmp/test/{{ item }}
         state: directory
       loop: "{{ range(50) | list }}"

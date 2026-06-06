@@ -1,7 +1,7 @@
 ---
 
 - name: "inventory directory"
-  file:
+  ansible.builtin.file:
     path: "{{ emplacement_inventaire }}"
     owner: "apache"
     group: "apache"

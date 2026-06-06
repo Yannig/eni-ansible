@@ -2,7 +2,7 @@
 
 - name: "Import Let's Encrypt certificate"
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: "Copy isrgrootx1.pem in /tmp"
       copy:
@@ -11,12 +11,12 @@
     - name: "Import isrgrootx1.pem"
       java_cert:
         keystore_path: "/tmp/test.jks"
-        keystore_create: yes
+        keystore_create: true
         keystore_pass: "ansible"
         cert_path: "/tmp/isrgrootx1.pem"
         cert_alias: "letsencrypt"
         state: present
     - name: "Remove isrgrootx1.pem from /tmp"
-      file:
+      ansible.builtin.file:
         path: "/tmp/isrgrootx1.pem"
         state: absent

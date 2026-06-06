@@ -22,6 +22,6 @@
     name: "php85-php,php85-php-mysqlnd,php85-php-xml,php85-php-mbstring,php85-php-gd,php85-php-intl"
     state: present
     enablerepo: "remi-8.5"
-  changed_when: yes
+  changed_when: true
   # We need to restart apache
   notify: [ "apache restart" ]

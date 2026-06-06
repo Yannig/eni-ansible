@@ -2,7 +2,7 @@
 
 - name: "install python"
   hosts: all
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: "Python installation using apt"
       # Do not forget -y here to avoid apt's questions

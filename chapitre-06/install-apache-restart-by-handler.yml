@@ -23,10 +23,10 @@
     - name: "Allow http connections"
       ansible.posix.firewalld:
         service: "http"
-        permanent: yes
+        permanent: true
         state: enabled
     - name: "Start apache service"
       ansible.builtin.service:
         name: "httpd"
         state: "started"
-        enabled: yes
+        enabled: true

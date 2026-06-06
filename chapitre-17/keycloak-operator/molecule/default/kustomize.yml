@@ -11,12 +11,12 @@
   k8s:
     definition: '{{ item }}'
     state: '{{ state }}'
-    wait: no
+    wait: false
   loop: '{{ resources.stdout | from_yaml_all | list }}'
 
 - name: Wait for resources to get to {{ state }}
   k8s:
     definition: '{{ item }}'
     state: '{{ state }}'
-    wait: yes
+    wait: true
   loop: '{{ resources.stdout | from_yaml_all | list }}'

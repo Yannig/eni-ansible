@@ -2,7 +2,7 @@
 
 - name: "Show gmail.com MX records"
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: "Show each MX records"
       debug: var=item

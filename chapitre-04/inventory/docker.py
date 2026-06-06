@@ -284,7 +284,7 @@ For the default host and each host in the hosts list define the following attrib
 
   host:
       description: The URL or Unix socket path used to connect to the Docker API.
-      required: yes
+      required: true
 
   tls:
      description: Connect using TLS without verifying the authenticity of the Docker host server.
@@ -350,7 +350,7 @@ ansible-playbook -i ~/projects/ansible/contrib/inventory/docker.py docker_invent
     - name: Test docker_inventory
       hosts: all
       connection: local
-      gather_facts: no
+      gather_facts: false
       tasks:
         - debug: msg="Container - {{ inventory_hostname }}"
 

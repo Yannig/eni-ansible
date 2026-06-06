@@ -2,6 +2,6 @@
 
 - name: "Install haproxy"
   hosts: haproxy
-  gather_facts: no
+  gather_facts: false
   roles:
     - role: "mediawiki/haproxy"

@@ -2,7 +2,7 @@
 
 - name: "Delete vm instance"
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: "Delete VM"
       vmware_guest:
@@ -11,8 +11,8 @@
         username: "{{ vmware_username }}"
         password: "{{ vmware_password }}"
         datacenter: "{{ vmware_datacenter }}"
-        validate_certs: no
-        force: yes
+        validate_certs: false
+        force: true
         folder: "{{ vmware_folder }}"
         # machine configuration
         name: "{{ vm_to_create }}"

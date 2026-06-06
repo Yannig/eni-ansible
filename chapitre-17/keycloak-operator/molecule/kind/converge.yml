@@ -2,19 +2,19 @@
 - name: Converge
   hosts: localhost
   connection: local
-  gather_facts: no
+  gather_facts: false
 
   tasks:
     - name: Build operator image
       docker_image:
         build:
           path: '{{ project_dir }}'
-          pull: no
+          pull: false
         name: '{{ operator_image }}'
         tag: latest
-        push: no
+        push: false
         source: build
-        force_source: yes
+        force_source: true
 
     - name: Load image into kind cluster
       command: kind load docker-image --name osdk-test '{{ operator_image }}'

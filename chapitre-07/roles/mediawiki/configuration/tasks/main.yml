@@ -1,25 +1,25 @@
 ---
 
 - name: "mediawiki directory"
-  file:
+  ansible.builtin.file:
     path: "{{ mediawiki_directory }}"
     owner: "apache"
     group: "apache"
     state: directory
 
 - name: "uncompress mediawiki archive"
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ mediawiki_archive_url }}"
     dest: "{{ mediawiki_directory }}"
     owner: "apache"
     group: "apache"
-    remote_src: yes
+    remote_src: true
     setype: httpd_sys_content_t
     # remove mediawiki-xx.x/ from path
     extra_opts: --transform=s/^mediawiki-[0-9\.]*\///
 
 - name: "mediawiki configuration"
-  become: yes
+  become: true
   become_user: "apache"
   environment:
     LC_ALL: C
@@ -36,7 +36,7 @@
        {{ mediawiki_title }} {{ mediawiki_admin_user }}
 
 - name: "fix mediawiki redirection"
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ mediawiki_directory }}/LocalSettings.php"
     regex: '\$wgServer.*'
     line: '$wgServer = WebRequest::detectServer();'

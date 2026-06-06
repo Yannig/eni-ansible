@@ -2,7 +2,7 @@
 
 - name: "Install Grafana"
   hosts: all
-  gather_facts: no
+  gather_facts: false
   tasks:
 
     - name: "Install Grafana and nssm"
@@ -35,7 +35,7 @@
           win_find:
             patterns: 'grafana-server.exe'
             paths: 'C:\ProgramData\chocolatey\lib\grafana'
-            recurse: yes
+            recurse: true
           register: _
 
         - name: "Create service for Grafana"

@@ -2,7 +2,7 @@
 
 - name: "Create podman network"
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   collections: &collections
     - "containers.podman"
   tasks:
@@ -13,7 +13,7 @@
 
 - name: "Create podman platform"
   hosts: [ "all" ]
-  gather_facts: no
+  gather_facts: false
   collections: *collections
   tasks:
     - name: "Create containers"
@@ -28,7 +28,7 @@
 
 - name: "Install prereq"
   hosts: [ "apache", "mysql" ]
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: "Install prereq"
       dnf:

@@ -2,7 +2,7 @@
 
 - name: "Handle admin user"
   hosts: localhost
-  become: yes
+  become: true
   vars:
     admin_password: "Ansibl3!zzZ"
     admin_hash:     "{{ admin_password|password_hash }}"
@@ -11,7 +11,7 @@
       getent:
         database: "shadow"
         key: "admin"
-        fail_key: no
+        fail_key: false
     - name: "Set hash password to old value"
       set_fact:
         admin_hash: "{{ getent_shadow.admin[0] }}"

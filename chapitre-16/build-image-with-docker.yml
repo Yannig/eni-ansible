@@ -2,13 +2,13 @@
 
 - name: "Build docker images"
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: "Build rocky-httpd image"
       docker_image:
         name: "rocky-httpd"
         source: build
-        force_source: yes
+        force_source: true
         build:
           path: "rocky-httpd"
-          pull: yes
+          pull: true

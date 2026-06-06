@@ -9,10 +9,10 @@ description: Module to do simple SQL request against MySQL database
 options:
   db_name:
     description: DB name
-    required: yes
+    required: true
   request:
     description: SQL request to execute
-    required: yes
+    required: true
 
 '''
 

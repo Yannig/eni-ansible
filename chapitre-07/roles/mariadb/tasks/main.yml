@@ -6,19 +6,19 @@
     state: "installed"
 
 - name: "start mariadb service"
-  service:
+  ansible.builtin.service:
     name:  "mariadb"
     state: "started"
-    enabled: yes
+    enabled: true
 
 - name: "Allow mariadb connections"
-  firewalld:
+  ansible.posix.firewalld:
     service: "mysql"
-    permanent: yes
+    permanent: true
     state: enabled
 
 - name: "Listen on all interfaces"
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "/etc/my.cnf.d/mariadb-server.cnf"
     line: "bind-address=*"
     insertafter: "[galera]"

@@ -2,7 +2,7 @@
 
 - name: "Keycloak deployment"
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: "create keycloak statefulset and service"
       k8s:

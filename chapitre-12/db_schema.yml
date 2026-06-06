@@ -2,7 +2,7 @@
 
 - name: "Create schema"
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   vars:
     schema_v1:
       personnes: [ "nom", "prenom" ]

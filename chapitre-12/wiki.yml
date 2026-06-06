@@ -1,7 +1,7 @@
 apache:
   hosts:
     apache[1:2]:
-      php_install: yes
+      php_install: true
 
 mysql:
   hosts:

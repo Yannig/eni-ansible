@@ -4,7 +4,7 @@ apache:
       # container_image: "docker.io/rockylinux/rockylinux:10-ubi-init
       container_image: rocky-httpd
       # start_cmd: "{{ omit }}"
-      php_install: yes
+      php_install: true
 
 mysql:
   hosts:
@@ -15,7 +15,7 @@ haproxy:
     haproxy1: {}
   vars:
     container_image: "docker.io/jrei/systemd-ubuntu:24.04"
-    privileged: yes
+    privileged: true
 
 all:
   vars:

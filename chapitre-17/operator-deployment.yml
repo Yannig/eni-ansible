@@ -2,7 +2,7 @@
 
 - name: "Keycloak operator deployment"
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   vars:
     REPLACE_IMAGE: "quay.io/yannig/keycloak-operator:v0.0.1"
     k8s_namespace: "default"
