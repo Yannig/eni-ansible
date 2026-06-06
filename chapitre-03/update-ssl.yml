@@ -7,7 +7,7 @@
   tasks:
     - name: "Hosts affectation"
       group_by:
-        key: "{{ansible_distribution}}-{{ansible_distribution_major_version}}"
+        key: "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}"
     - debug: var=ansible_distribution,ansible_distribution_major_version
 
 - name: "Update SSL on CentOS 8 machines"

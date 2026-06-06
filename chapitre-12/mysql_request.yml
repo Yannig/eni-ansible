@@ -7,5 +7,5 @@
     - name: "Retrieve table count"
       mysql_request:
         db_name: "mediawiki"
-        request: "{{lookup('file', 'test.sql')}}"
+        request: "{{ lookup('file', 'test.sql') }}"
     - debug: var=mysql_results

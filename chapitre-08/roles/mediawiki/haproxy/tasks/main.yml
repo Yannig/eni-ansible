@@ -6,7 +6,7 @@
     state: present
 
 - name: "haproxy configuration"
-  template:
+  ansible.builtin.template:
     src: "mediawiki.cfg.j2"
     dest: "/etc/haproxy/haproxy.cfg"
     owner: "root"

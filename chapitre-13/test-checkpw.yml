@@ -6,8 +6,8 @@
   vars:
     pass1: "password1"
     pass2: "password2"
-    hashed_pass1: "{{pass1|password_hash}}"
-    hashed_pass2: "{{pass2|password_hash}}"
+    hashed_pass1: "{{ pass1|password_hash }}"
+    hashed_pass2: "{{ pass2|password_hash }}"
   tasks:
     - name: "Check various assertion"
       assert:

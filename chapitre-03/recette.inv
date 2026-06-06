@@ -11,7 +11,7 @@ rec-mysql-1 mysql_user_password=MyPassWord!
 active-directory-1
 
 [microservices]
-container-1 ansible_connection=docker
+container-1 ansible_connection=community.docker.docker
 
 [linux:children]
 apache
@@ -24,7 +24,7 @@ active-directory
 microservices
 
 [windows:vars]
-ansible_connection=winrm
+ansible_connection=ansible.builtin.winrm
 
 [container:vars]
-ansible_connection=localhost
+ansible_connection=ansible.builtin.local

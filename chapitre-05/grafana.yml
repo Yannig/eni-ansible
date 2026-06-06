@@ -41,7 +41,7 @@
         - name: "Create service for Grafana"
           win_nssm:
             name:        "grafana-server"
-            application: '{{_.files[0].path}}'
+            application: '{{ _.files[0].path }}'
 
         - name: "Start grafana"
           # Retrieve service definition from YAML variable

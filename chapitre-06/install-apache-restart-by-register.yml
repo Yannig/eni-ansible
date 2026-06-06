@@ -4,11 +4,11 @@
   hosts: inventory
   tasks:
     - name: "Apache package installation"
-      yum:
+      ansible.builtin.yum:
         name: "httpd"
         state: "present"
     - name: "Apache configuration"
-      template:
+      ansible.builtin.template:
         src: "inventory.conf.j2"
         dest: "/etc/httpd/conf.d/inventory.conf"
         owner: "apache"
@@ -16,20 +16,20 @@
       # register execution result for template creation
       register: apache_conf
     # debug instruction to get apache_conf content
-    - debug: var=apache_conf
+    - ansible.builtin.debug: var=apache_conf
     - name: "Allow http connections"
-      firewalld:
+      ansible.posix.firewalld:
         service: "http"
         permanent: yes
         state: enabled
     - name: "Restart apache service"
-      service:
+      ansible.builtin.service:
         name: "httpd"
         state: "restarted"
       # restart if necessary
       when: apache_conf is changed
     - name: "Start apache service"
-      service:
+      ansible.builtin.service:
         name: "httpd"
         state: "started"
         enabled: yes

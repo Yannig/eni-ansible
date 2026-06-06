@@ -7,13 +7,13 @@
     - name: "Delete VM"
       vmware_guest:
         # VMWare configuration
-        hostname: "{{vmware_hostname}}"
-        username: "{{vmware_username}}"
-        password: "{{vmware_password}}"
-        datacenter: "{{vmware_datacenter}}"
+        hostname: "{{ vmware_hostname }}"
+        username: "{{ vmware_username }}"
+        password: "{{ vmware_password }}"
+        datacenter: "{{ vmware_datacenter }}"
         validate_certs: no
         force: yes
-        folder: "{{vmware_folder}}"
+        folder: "{{ vmware_folder }}"
         # machine configuration
-        name: "{{vm_to_create}}"
+        name: "{{ vm_to_create }}"
         state: "absent"

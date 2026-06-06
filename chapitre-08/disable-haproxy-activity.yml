@@ -5,7 +5,7 @@
   gather_facts: no
   tasks:
     - name: "Apache configuration to detect haproxy activity"
-      copy:
+      ansible.builtin.copy:
         dest: "/etc/httpd/conf.d/detect-haproxy-activity.conf"
         content: "SetEnvIf Request_URI /disabled dontlog"
         owner: "apache"

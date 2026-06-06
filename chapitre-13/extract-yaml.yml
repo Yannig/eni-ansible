@@ -8,5 +8,5 @@
       register: raw_personnes
     - name: "Extract YAML content"
       set_fact:
-        personnes: "{{raw_personnes.stdout|from_yaml}}"
+        personnes: "{{ raw_personnes.stdout|from_yaml }}"
     - debug: var=personnes

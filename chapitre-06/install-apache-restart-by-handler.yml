@@ -4,16 +4,16 @@
   hosts: inventory
   handlers:
     - name: "Apache restart"
-      service:
+      ansible.builtin.service:
         name: "httpd"
         state: "restarted"
   tasks:
     - name: "Apache package installation"
-      yum:
+      ansible.builtin.yum:
         name: "httpd"
         state: "present"
     - name: "Apache configuration"
-      template:
+      ansible.builtin.template:
         src: "inventory.conf.j2"
         dest: "/etc/httpd/conf.d/inventory.conf"
         owner: "apache"
@@ -21,12 +21,12 @@
       # Notify Apache restart handler
       notify: [ "Apache restart" ]
     - name: "Allow http connections"
-      firewalld:
+      ansible.posix.firewalld:
         service: "http"
         permanent: yes
         state: enabled
     - name: "Start apache service"
-      service:
+      ansible.builtin.service:
         name: "httpd"
         state: "started"
         enabled: yes

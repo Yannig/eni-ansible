@@ -17,7 +17,7 @@
   gather_facts: no
   tasks:
     - name: "disable this Apache instance"
-      file:
+      ansible.builtin.file:
         path: "/var/www/html/disabled"
         state: touch
     - name: "wait haproxy to ignore this host"
@@ -26,6 +26,6 @@
     - include_role:
         name: "mediawiki/configuration"
     - name: "enable this Apache instance"
-      file:
+      ansible.builtin.file:
         path: "/var/www/html/disabled"
         state: absent

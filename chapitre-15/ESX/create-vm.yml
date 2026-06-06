@@ -7,34 +7,34 @@
     - name: "Create VM"
       vmware_guest:
         # VMWare configuration
-        hostname: "{{vmware_hostname}}"
-        username: "{{vmware_username}}"
-        password: "{{vmware_password}}"
-        datacenter: "{{vmware_datacenter}}"
+        hostname: "{{ vmware_hostname }}"
+        username: "{{ vmware_username }}"
+        password: "{{ vmware_password }}"
+        datacenter: "{{ vmware_datacenter }}"
         validate_certs: no
-        folder: "{{vmware_folder}}"
+        folder: "{{ vmware_folder }}"
         # machine configuration
-        name: "{{vm_to_create}}"
+        name: "{{ vm_to_create }}"
         state: "poweredon"
-        hardware: "{{vm_hardware}}"
-        template: "{{vm_template}}"
+        hardware: "{{ vm_hardware }}"
+        template: "{{ vm_template }}"
     - name: "Set hostname/IP"
       vmware_vm_shell:
         validate_certs: no
-        hostname: "{{vmware_hostname}}"
-        username: "{{vmware_username}}"
-        password: "{{vmware_password}}"
-        datacenter: "{{vmware_datacenter}}"
-        vm_id: "{{vm_to_create}}"
+        hostname: "{{ vmware_hostname }}"
+        username: "{{ vmware_username }}"
+        password: "{{ vmware_password }}"
+        datacenter: "{{ vmware_datacenter }}"
+        vm_id: "{{ vm_to_create }}"
         vm_username: "root"
-        vm_password: "{{vm_root_password}}"
+        vm_password: "{{ vm_root_password }}"
         vm_shell: "/usr/bin/hostnamectl"
-        vm_shell_args: "set-hostname {{vm_to_create}} --static"
+        vm_shell_args: "set-hostname {{ vm_to_create }} --static"
         vm_shell_env: [ "PATH=/bin:/usr/bin" ]
         vm_shell_cwd: "/tmp"
       loop:
       - cmd: "/usr/bin/hostnamectl"
-        args: "set-hostname {{vm_to_create}} --static"
+        args: "set-hostname {{ vm_to_create }} --static"
       - cmd: "/usr/bin/nmcli"
         args: "connection modify ens32 ipv4.addresses 192.168.0.1/24"
       until: retry is not failed

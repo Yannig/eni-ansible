@@ -21,7 +21,7 @@
         name:      "{{ inventory_hostname }}"
         hostname:  "{{ inventory_hostname }}"
         command:   "/sbin/init"
-        network:   "{{ network_name}}"
+        network:   "{{ network_name }}"
         image:     "{{ container_image|d('docker.io/rockylinux/rockylinux:10-ubi-init') }}"
         state:     started
       delegate_to: localhost

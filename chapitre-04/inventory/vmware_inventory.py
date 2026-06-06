@@ -228,7 +228,7 @@ class VMWareInventory(object):
             'alias_pattern': '{{ config.name + "_" + config.uuid }}',
             'host_pattern': '{{ guest.ipaddress }}',
             'host_filters': '{{ runtime.powerstate == "poweredOn" }}',
-            'groupby_patterns': '{{ guest.guestid }},{{ "templates" if config.template else "guests"}}',
+            'groupby_patterns': '{{ guest.guestid }},{{ "templates" if config.template else "guests" }}',
             'lower_var_keys': True,
             'custom_field_group_prefix': 'vmware_tag_',
             'groupby_custom_field_excludes': '',

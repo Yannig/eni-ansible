@@ -8,11 +8,11 @@
     inventory_dir:  "/var/www/html/inventory"
   tasks:
     # Delegate both instructions on central machine
-    - delegate_to: "{{host_inventory}}"
+    - delegate_to: "{{ host_inventory }}"
       block:
         - name: "Create template directory"
           file:
-            path: "{{inventory_dir}}"
+            path: "{{ inventory_dir }}"
             owner: "apache"
             group: "apache"
             mode: "0755"
@@ -23,4 +23,4 @@
         - name: "html file generation"
           template:
             src: "machine.html.j2"
-            dest: "{{inventory_dir}}/{{inventory_hostname}}.html"
+            dest: "{{ inventory_dir }}/{{ inventory_hostname }}.html"

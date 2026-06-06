@@ -13,9 +13,9 @@
     - name: "mediawiki user+privileges"
       mysql_user:
         name:     "mediawiki"
-        host:     "{{item}}"
+        host:     "{{ item }}"
         state:    absent
-      loop: "{{groups.apache}}"
+      loop: "{{ groups.apache }}"
 
 
 - name: "MediaWiki apache configuration"
@@ -23,6 +23,6 @@
   tags: "apache"
   gather_facts: no
   tasks:
-    - file:
+    - ansible.builtin.file:
         path: "/var/www/html/mediawiki"
         state: absent

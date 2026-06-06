@@ -1,7 +1,7 @@
 ---
 
 - name: "mediawiki directory"
-  file:
+  ansible.builtin.file:
     path: "{{ mediawiki_directory }}"
     owner: "apache"
     group: "apache"

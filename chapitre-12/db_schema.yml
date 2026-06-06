@@ -13,12 +13,12 @@
     - name: "Create schema"
       db_schema:
         db_url: "sqlite:////tmp/test.db"
-        spec: "{{schema_v1}}"
+        spec: "{{ schema_v1 }}"
     - name: "Update schema"
       db_schema:
         db_url: "sqlite:////tmp/test.db"
-        spec: "{{schema_v2}}"
+        spec: "{{ schema_v2 }}"
     - name: "No modification"
       db_schema:
         db_url: "sqlite:////tmp/test.db"
-        spec: "{{schema_v1}}"
+        spec: "{{ schema_v1 }}"
