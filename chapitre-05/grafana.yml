@@ -6,12 +6,12 @@
   tasks:
 
     - name: "Install Grafana and nssm"
-      win_chocolatey:
+      chocolatey.chocolatey.win_chocolatey:
         name: ["grafana", "nssm"]
         state: present
 
     - name: "Configure firewall for grafana"
-      win_firewall_rule:
+      community.windows.win_firewall_rule:
         name:      "Grafana server"
         localport: "3000"
         action:    allow
@@ -23,7 +23,7 @@
     - block:
         - name: "Start grafana"
           # Store service definition in a YAML variable
-          win_service: &start-grafana-service
+          ansible.windows.win_service: &start-grafana-service
             name: "grafana-server"
             description: "Grafana server"
             dependencies: [ "Tcpip" ]
@@ -32,17 +32,18 @@
 
       rescue:
         - name: "Find grafana"
-          win_find:
-            patterns: 'grafana-server.exe'
+          ansible.windows.win_find:
+            patterns: 'grafana.exe'
             paths: 'C:\ProgramData\chocolatey\lib\grafana'
             recurse: true
           register: _
 
         - name: "Create service for Grafana"
-          win_nssm:
+          community.windows.win_nssm:
             name:        "grafana-server"
             application: '{{ _.files[0].path }}'
+            arguments: 'server'
 
         - name: "Start grafana"
           # Retrieve service definition from YAML variable
-          win_service: *start-grafana-service
+          ansible.windows.win_service: *start-grafana-service

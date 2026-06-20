@@ -1,7 +1,7 @@
 win:
   hosts:
     windows1:
-      ansible_user: Administrateur
-      ansible_password: Passw0rd!
-      ansible_connection: winrm
+      ansible_user: Docker
+      ansible_password: admin
+      ansible_connection: ansible.builtin.winrm
       ansible_winrm_server_cert_validation: ignore
