@@ -2,6 +2,7 @@ from ansiblelint.rules import AnsibleLintRule
 
 
 class SELinuxNotOnUnarchive(AnsibleLintRule):
+    version_changed = '0.0.0'
     id = 'no-setype-on-unarchive'
     shortdesc = 'setype not on unarchive'
     description = 'No field ``setype`` on ``unarchive`` module'
