@@ -1,15 +1,17 @@
 ---
 
 - name: "mediawiki database"
-  mysql_db:
+  ansible.mysql.mysql_db:
     name: "{{ mediawiki_db_name }}"
     state: present
+    login_unix_socket: "/var/lib/mysql/mysql.sock"
   run_once: true
 
 - name: "mediawiki user+privileges"
-  mysql_user:
+  ansible.mysql.mysql_user:
     name:     "{{ mediawiki_db_user }}"
     password: "{{ mediawiki_db_password }}"
     priv:     "{{ mediawiki_db_name }}.*:ALL"
-    host:     "{{ ansible_default_ipv4.address }}"
+    host:     "{{ ansible_facts.default_ipv4.address }}"
     state:    present
+    login_unix_socket: "/var/lib/mysql/mysql.sock"

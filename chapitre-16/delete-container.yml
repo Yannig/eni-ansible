@@ -9,3 +9,9 @@
         name:       "{{ inventory_hostname }}"
         state:      absent
       delegate_to: localhost
+    - name: "Delete podman network"
+      run_once: true
+      containers.podman.podman_network:
+        name: "{{ network_name }}"
+        state: absent
+      delegate_to: localhost

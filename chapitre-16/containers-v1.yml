@@ -1,10 +1,10 @@
 apache:
   hosts:
     "apache[1:4]":
-      # container_image: "docker.io/rockylinux/rockylinux:10-ubi-init
-      container_image: rocky-httpd
-      # start_cmd: "{{ omit }}"
+      container_image: "docker.io/rockylinux/rockylinux:10-ubi-init"
+      start_cmd: "/sbin/init"
       php_install: true
+      privileged: true
 
 mysql:
   hosts:

@@ -23,6 +23,7 @@
         command:   "/sbin/init"
         network:   "{{ network_name }}"
         image:     "{{ container_image|d('docker.io/rockylinux/rockylinux:10-ubi-init') }}"
+        privileged: true
         state:     started
       delegate_to: localhost
 
@@ -32,5 +33,5 @@
   tasks:
     - name: "Install prereq"
       dnf:
-        name: "sudo,firewalld,iproute"
+        name: "firewalld,iproute"
         state: present

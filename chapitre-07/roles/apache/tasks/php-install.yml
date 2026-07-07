@@ -1,27 +1,37 @@
 ---
 
-- name: "epel activation"
-  ansible.builtin.dnf:
-    name: "epel-release,epel-next-release"
-    enablerepo: powertools
+- block:
+    - name: "epel activation"
+      ansible.builtin.dnf:
+        name: "epel-release"
 
-- name: "remi repo activation"
-  ansible.builtin.dnf:
-    name: "https://rpms.remirepo.net/enterprise/remi-release-8.rpm"
-    state: present
-    disable_gpg_check: true
+    - name: "remi repo activation"
+      ansible.builtin.dnf:
+        name: "https://rpms.remirepo.net/enterprise/remi-release-10.rpm"
+        state: present
+        disable_gpg_check: true
 
-- name: "Import GPG Key"
-  rpm_key:
-    state: present
-    key: "/etc/pki/rpm-gpg/{{ item }}"
-  loop: ["RPM-GPG-KEY-remi", "RPM-GPG-KEY-remi2020", "RPM-GPG-KEY-remi2021", "RPM-GPG-KEY-remi2022"]
+    - name: "Import GPG Key"
+      vars:
+        gpg_key: "RPM-GPG-KEY-remi{{ item }}"
+      rpm_key:
+        state: present
+        key: "/etc/pki/rpm-gpg/{{ gpg_key }}"
+      loop: [2020, 2021, 2022, 2023, 2024, 2025, 2026]
 
-- name: "install php82 packages"
+    - name: "install php packages from REMI repository"
+      ansible.builtin.dnf:
+        name: "php85-php,php85-php-mysqlnd,php85-php-xml,php85-php-mbstring,php85-php-gd,php85-php-intl"
+        state: present
+      # We need to restart apache
+      notify: [ "apache restart" ]
+
+  when: activate_remi_repo|bool
+
+- name: "install php packages from default repository"
   ansible.builtin.dnf:
-    name: "php85-php,php85-php-mysqlnd,php85-php-xml,php85-php-mbstring,php85-php-gd,php85-php-intl"
+    name: "php,php-mysqlnd,php-xml,php-mbstring,php-gd,php-intl"
     state: present
-    enablerepo: "remi-8.5"
-  changed_when: true
+  when: not activate_remi_repo|bool
   # We need to restart apache
   notify: [ "apache restart" ]
