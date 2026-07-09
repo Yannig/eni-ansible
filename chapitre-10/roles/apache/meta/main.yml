@@ -1,6 +1,7 @@
+#SPDX-License-Identifier: MIT-0
 galaxy_info:
+  role_name: apache
   author: Yannig Perré
-  namespace: eni
   description: Install Apache
   company: your company (optional)
 
@@ -15,23 +16,12 @@ galaxy_info:
   # - GPL-3.0-only
   # - Apache-2.0
   # - CC-BY-4.0
-  license: BSD
+  license: GPL-2.0-or-later
 
-  min_ansible_version: 2.1
+  min_ansible_version: 2.2
 
   # If this a Container Enabled role, provide the minimum Ansible Container version.
   # min_ansible_container_version:
-
-  #
-  # Provide a list of supported platforms, and for each platform a list of versions.
-  # If you don't wish to enumerate all versions for a particular platform, use 'all'.
-  # To view available platforms and versions (or releases), visit:
-  # https://galaxy.ansible.com/api/v1/platforms/
-  #
-  platforms:
-  - name: CentOS
-    versions:
-    - stream8
 
   galaxy_tags: []
     # List tags for your role here, one per line. A tag is a keyword that describes

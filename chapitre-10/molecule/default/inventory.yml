@@ -1,0 +1,16 @@
+---
+all:
+  children:
+    apache:
+      hosts:
+        apache:
+          container_image: docker.io/rockylinux/rockylinux:10-ubi-init
+          container_command: /sbin/init
+          container_privileged: true
+      vars:
+        network_name: test-network
+        http_port: 80
+        server_name: test-web
+        required_packages:
+          - python3
+          - systemd

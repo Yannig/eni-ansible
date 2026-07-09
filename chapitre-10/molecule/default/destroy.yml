@@ -1,0 +1,25 @@
+---
+- name: Destroy
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    network_name: test-network
+  # no_log: "{{ molecule_no_log }}"
+  collections: [ "containers.podman" ]
+  tasks:
+    - name: Retrieving containers
+      ansible.builtin.shell: podman container ps --format json | jq -r '.[]|select(.Networks[0] == "test-network")|.Names[0]'
+      changed_when: false
+      register: _
+    - name: "Delete Apache containers"
+      podman_container:
+        name:      "{{ item }}"
+        network:   "{{ network_name }}"
+        state:     absent
+      loop: "{{ _.stdout_lines }}"
+    - name: "Delete podman network"
+      run_once: true
+      podman_network:
+        name: "{{ network_name }}"
+        state: absent

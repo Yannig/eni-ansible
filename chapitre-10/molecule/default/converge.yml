@@ -1,0 +1,16 @@
+---
+# Purpose: bring the instance to the desired state by running the role under test.
+# Molecule calls this playbook with `molecule converge`.
+- name: Converge
+  hosts: all
+  gather_facts: false
+  vars:
+    ansible_connection: containers.podman.podman
+  tasks:
+    - name: "Install prereq"
+      dnf:
+        name: "firewalld,iproute"
+        state: present
+    - name: Apply role under test
+      ansible.builtin.include_role:
+        name: apache

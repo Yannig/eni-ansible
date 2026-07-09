@@ -1,0 +1,27 @@
+---
+# Purpose: assert that the instance really ended up in the expected state.
+# Molecule calls this playbook with `molecule verify`.
+- name: Verify
+  hosts: instance
+  gather_facts: false # Quicker, if you do not need facts
+  vars:
+    ansible_connection: containers.podman.podman
+  tasks:
+    - name: Retrieve services states
+      ansible.builtin.service_facts: {}
+    - name: Check apache service status
+      ansible.builtin.assert:
+        that:
+          - ansible_facts.services["httpd.service"].state == "running"
+          - ansible_facts.services["httpd.service"].status == "enabled"
+    - name: Retrieving apache content
+      ansible.builtin.uri:
+        url: http://localhost/
+        method: GET
+        status_code: [200, 403]
+      changed_when: false
+      register: _
+    - name: Check page content
+      ansible.builtin.assert:
+        that:
+          - '"HTTP Server Test Page powered by: Rocky Linux" in _.body'

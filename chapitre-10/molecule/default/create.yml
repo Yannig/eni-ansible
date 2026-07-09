@@ -1,0 +1,23 @@
+---
+- name: Create
+  hosts: all
+  connection: local
+  gather_facts: false
+  vars:
+    network_name: test-network
+  collections: [ "containers.podman" ]
+  tasks:
+    - name: "Create podman network"
+      run_once: true
+      podman_network:
+        name: "{{ network_name }}"
+        state: present
+    - name: "Create Apache containers"
+      podman_container:
+        name:      "{{ inventory_hostname }}"
+        hostname:  "{{ inventory_hostname }}"
+        command:   "/sbin/init"
+        network:   "{{ network_name }}"
+        image:     "{{ container_image|d('docker.io/rockylinux/rockylinux:10-ubi-init') }}"
+        privileged: true
+        state:     started
