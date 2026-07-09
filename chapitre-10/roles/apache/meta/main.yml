@@ -3,7 +3,7 @@ galaxy_info:
   role_name: apache
   author: Yannig Perré
   description: Install Apache
-  company: your company (optional)
+  company: ENI Éditions
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value

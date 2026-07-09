@@ -18,6 +18,6 @@
         hostname:  "{{ inventory_hostname }}"
         command:   "/sbin/init"
         network:   "{{ network_name }}"
-        image:     "{{ container_image|d('docker.io/rockylinux/rockylinux:10-ubi-init') }}"
+        image:     "docker.io/rockylinux/rockylinux:10-ubi-init"
         privileged: true
         state:     started
