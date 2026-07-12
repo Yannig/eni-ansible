@@ -14,7 +14,7 @@ class ActionModule(ActionBase):
         if not tmp:
             tmp = self._make_tmp_path()
 
-        result = super(ActionModule, self).run(tmp, task_vars)
+        result = super(ActionModule, self).run(task_vars=task_vars)
 
         cert_path = self._task.args.get('cert_path', None)
         remote_src = boolean(self._task.args.get('remote_src', True))
