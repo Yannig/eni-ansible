@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 # db_schema - based on dataset and sqlalchemy
 
@@ -26,7 +26,7 @@ def main():
     before = dict(tables=db.tables, columns=[])
     after  = dict(tables=db.tables, columns=[])
 
-    yaml_spec = yaml.load(spec)
+    yaml_spec = yaml.safe_load(spec)
 
     # Read yaml spec and apply it to current database
     for table, columns in iteritems(yaml_spec):

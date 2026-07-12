@@ -8,4 +8,4 @@
       mysql_request:
         db_name: "mediawiki"
         request: "{{ lookup('file', 'test.sql') }}"
-    - debug: var=mysql_results
+    - debug: var=ansible_facts.mysql_results

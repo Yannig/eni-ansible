@@ -10,6 +10,10 @@ options:
   db_name:
     description: DB name
     required: true
+  unix_socket:
+    description: Path to the MySQL Unix socket
+    required: false
+    default: '/var/lib/mysql/mysql.sock'
   request:
     description: SQL request to execute
     required: true
@@ -34,17 +38,19 @@ import pymysql
 def main():
     module = AnsibleModule(
         argument_spec=dict(
-            db_name    = dict(required=True, type='str'),
-            request    = dict(required=True, type='str'),
+            db_name     = dict(required=True, type='str'),
+            unix_socket = dict(required=False, type='str', default='/var/lib/mysql/mysql.sock'),
+            request     = dict(required=True, type='str'),
         )
     )
 
     # Retrieving options value
-    db_name  = module.params.get('db_name')
-    request  = module.params.get('request')
+    db_name     = module.params.get('db_name')
+    unix_socket = module.params.get('unix_socket')
+    request     = module.params.get('request')
 
     # Connect to your database
-    db = pymysql.connect(db=db_name)
+    db = pymysql.connect(db=db_name, unix_socket=unix_socket)
     # Get a cursor, execute your request then close connection
     cur = db.cursor()
     cur.execute(request)
